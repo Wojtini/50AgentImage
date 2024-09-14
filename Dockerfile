@@ -1,11 +1,11 @@
-FROM jenkins/agent:latest-alpine
+FROM jenkins/agent:jdk17
 
 USER root
-RUN apk add --no-cache \
-  rsync=3.3.0-r0 \
-  rclone=1.66.0-r4 \
+RUN apt update && apt install -y \
+  rsync \
+  rclone \
   python3 \
-  py3-pip
+  python3.11-venv
 USER jenkins
 
 ENV JENKINS_URL=localhost:8080
